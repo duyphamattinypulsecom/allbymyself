@@ -1,11 +1,6 @@
 class EventsController < ApplicationController
   def index
-    if params[:search]
-        @events = Event.where("upper(name) like upper('%#{params[:search]}%')")
-    else
-        @events = Event.all
-    end
-
+    @events = Event.bookable_event params[:search]
   end
 
   def show
