@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all    
+    if params[:search]
+        @events = Event.where("upper(name) like upper('%#{params[:search]}%')")
+    else
+        @events = Event.all
+    end
+
   end
 
   def show
