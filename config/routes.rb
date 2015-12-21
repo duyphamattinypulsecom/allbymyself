@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'events#index'
+  root 'welcome#index'
 
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
