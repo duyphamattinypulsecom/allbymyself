@@ -1,5 +1,10 @@
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
+        <ol class="breadcrumb" style="margin-bottom: 5px;">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li class="active">Data</li>
+        </ol>
         <p>Event detail</p>
         <div class="signup-form">
           <%= form_for @event || Event.new do |f| %>
@@ -7,9 +12,11 @@
               <%= f.text_field 'name', class: 'form-control', placeholder: 'name'%>
             </div>
             <div class="form-group">
+              <label>Venue</label>
               <%= f.collection_select 'venue', @venue, :id, :name, {include_blank: false}, {:class => 'form-control'} %>
             </div>
             <div class="form-group">
+              <label>Category</label>
               <%= f.collection_select 'category', @category, :id, :name, {include_blank: false}, {:class => 'form-control'} %>
             </div>
             <div class="form-group">
