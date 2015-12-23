@@ -13,19 +13,15 @@ class EventsController < ApplicationController
   end
 
   def create
-      region = Region.create(name: "Lam Dong")
-      category = Category.create(name: "Entertainment")
-      venue = Venue.create(name: "venue name", full_address: "venue addr", region: region)
-
       @event = Event.new(event_params)
-      @event.venue = venue
-      @event.category = category
       @event.creator = current_user
+      @event.hero_image_url = 'https://az810747.vo.msecnd.net/eventcover/2015/10/25/C6A1A5.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter'
 
       if @event.save 
-
-        redirect_to events_path
+        redirect_to new_event_tickettype_path(@event)
       else
+        @venue = Venue.all
+        @category = Category.all
         render 'new'
       end
 
@@ -33,6 +29,6 @@ class EventsController < ApplicationController
 
   private 
   def event_params
-    params.require(:event).permit(:name, :hero_image_url, :starts_at, :ends_at, :extended_html_description)
+    params.require(:event).permit(:name, :hero_image_url, :category_id, :venue_id, :starts_at, :ends_at, :extended_html_description)
   end
 end
