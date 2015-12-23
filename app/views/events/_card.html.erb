@@ -6,7 +6,12 @@
         <h4 class="card-title"><%= event.name %></h4>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <% if editable %>
-          <%= link_to 'Edit', edit_event_path(event), {class: 'btn btn-danger'} %>
+          <%= link_to 'Edit', edit_event_path(event), {class: 'btn btn-success'} %>
+          <% if event.public %>
+            <span class="label label-default">event was published</span>
+          <% else %>
+            <%= link_to 'Publish', publish_event_path(event), {class: 'btn btn-danger'} %>
+          <% end %>
         <% end %>
       </div>
     </div>

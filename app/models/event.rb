@@ -7,11 +7,11 @@ class Event < ActiveRecord::Base
   validates_presence_of :extended_html_description, :venue, :category, :starts_at, :name
 
   def self.bookable_event(title_contain_str = "")
-    futureCon = "starts_at >= ?"
+    bookable = "starts_at >= ? and public = true"
     if title_contain_str 
-        Event.where("upper(name) like upper('%#{title_contain_str}%') and #{futureCon}", Time.zone.now)
+        Event.where("upper(name) like upper('%#{title_contain_str}%') and #{bookable}", Time.zone.now)
     else
-        @events = Event.where(futureCon, Time.zone.now)
+        @events = Event.where(bookable, Time.zone.now)
     end
   end
 

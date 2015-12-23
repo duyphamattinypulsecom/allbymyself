@@ -10,6 +10,11 @@
         </div>
     </div>
 </div>
+<% if @error %>
+    <div class="alert alert-danger alert-container" role="alert">
+      <%= @error.html_safe %>
+    </div>
+<% end %>
 <div class="container-fluid events-list">
     <% @events.in_groups_of(2) do |g| %>
       <div class="row">
