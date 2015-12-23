@@ -10,24 +10,22 @@
 
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav pull-right">
       <% if signed_in? %>
         <li class="nav-item">
-          <a class="nav-link" href="/logout">Log Out</a>
+          <a class="nav-link" href="/events">your workspace</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/events">Your events</a>
+          <a class="nav-link" href="/logout">log out</a>
         </li>
       <% else %>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Log In</a>
+          <a class="nav-link" href="/login">log in</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/new">Sign Up</a>
+          <a class="nav-link" href="/users/new">sign up</a>
         </li>
-        
       <% end %>
-    </div>
     </ul>
   </nav>  
 

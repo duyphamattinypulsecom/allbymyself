@@ -1,10 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <div class="btn-group">
+                <%= link_to 'new event', new_event_path, {class: "btn btn-success"} %>
+            </div>
+            <div class="btn-group">
+                <%= link_to 'new venue', new_venue_path, {class: "btn btn-success"} %>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid events-list">
     <% @events.in_groups_of(2) do |g| %>
       <div class="row">
         <% g.compact.each do |e| %>
             <%= render partial: 'card', locals: {event: e, editable: true} %>
         <% end %>
-      </div>  
+      </div>
     <% end %>
-  </div>
 </div>

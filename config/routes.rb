@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
 
   get 'tickettypes/:id/remove' => 'tickettypes#destroy'
+  get 'venues/:id/remove' => 'venues#destroy'
 
   resources :users, only: [:new, :create]
 
   resources :sessions, only: [:new, :create, :destroy]
 
+  resources :venues, only: [:new, :create, :destroy]
+  
   resources :events do
     resources :tickets
     resources :tickettypes, only: [:new, :create]

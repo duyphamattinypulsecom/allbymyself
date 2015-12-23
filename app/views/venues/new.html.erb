@@ -1,0 +1,47 @@
+<div class="container-fluid no-pad events-detail">
+  <div class="row no-pad">
+      <div class="col-sm-6 col-sm-offset-3">  
+        <%= form_for @venue || Venue.new, url: venues_path do |f| %>
+            <div class="form-group">
+              <%= f.text_field 'name', class: 'form-control', placeholder: 'name'%>
+            </div>
+            <div class="form-group">
+              <%= f.text_area 'full_address', class: 'form-control', placeholder: 'full address' %>
+            </div>
+            <% if @venue && @venue.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <ul>
+                  <% @venue.errors.full_messages.each do |err| %>
+                    <li>
+                      <strong><%= err %></strong>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+                <%= f.submit 'Add venue', class: 'btn btn-block btn-success' %>
+            </div>    
+        <% end %>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">  
+      <table class="table">
+        <th> venue name </th>
+        <th> full address </th>
+        <th></th>
+      
+        <% current_user.venues.each do |v| %>
+          <tr>
+            <td> <%= v.name %> </td>
+            <td> <%= v.full_address %> </td>
+            <td> 
+              <a class="nav-link" href="/venues/<%= v.id %>/remove">delete</a>
+            </td>
+          </tr>
+        <% end %> 
+      </table>
+    </div>
+  </div>
+</div>
