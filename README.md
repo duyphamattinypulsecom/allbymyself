@@ -63,7 +63,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I have problem with "bootstrap3-datetimepicker-rails", it works locally but not in heroku. If it's possible, please help to explain how resources (css, js, images) are processed.
 
 ## License
 
