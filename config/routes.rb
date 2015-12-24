@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :venues, only: [:new, :create, :destroy]
   
   resources :events do
-    resources :tickets
+    resources :tickets, only: [:index, :new, :create]
     resources :tickettypes, only: [:new, :create]
 
     get 'tickettypes/:id/remove' => "tickettypes#destroy"

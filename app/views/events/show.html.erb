@@ -28,11 +28,11 @@
           <div class="row">
             <div class="col-md-12">  
               <table class="table">
-                <th> Ticket Type </th>
-                <th> Unit Price </th>
+                <th> ticket type </th>
+                <th> unit price </th>
                 <% unless @event.booked session[:user_id] %>
-                  <th> Quantity </th>
-                  <th> Available </th>
+                  <th> quantity </th>
+                  <th> available </th>
                 <% end %>
                 <th> booked </th>
               

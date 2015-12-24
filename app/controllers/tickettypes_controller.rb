@@ -1,6 +1,9 @@
 class TickettypesController < ApplicationController
+  before_action :require_login, only: [:new, :create, :destroy]
+
   def new
       @event = Event.find(params[:event_id])
+      @tickettype = TicketType.new
   end
 
   def create
@@ -13,10 +16,6 @@ class TickettypesController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def update
-
   end
 
   def destroy

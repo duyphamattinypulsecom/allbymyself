@@ -1,4 +1,6 @@
 class VenuesController < ApplicationController
+  before_action :require_login, only: [:new, :create, :destroy]
+
   def new
     current_user.reload
   end
