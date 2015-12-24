@@ -15,4 +15,12 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def booked user_id
+    tickets = Ticket.where('user_id = ? and event_id = ?', user_id, id)
+    tickets.count > 0 ? true : false
+  end
+
+  def booked_tickets user_id
+    Ticket.where('user_id = ? and event_id = ?', user_id, id)
+  end
 end

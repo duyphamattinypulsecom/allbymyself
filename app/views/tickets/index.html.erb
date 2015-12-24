@@ -1,0 +1,35 @@
+<div class="container-fluid events-list">
+    <% @events.in_groups_of(2) do |g| %>
+      <div class="row">
+        <% g.compact.each do |event| %>
+            <div class="col-md-6">
+              <%= link_to event_path(event) do %>
+                <div class="card">
+                  <img class="card-img-top" src="<%= event.hero_image_url %>">
+                  <div class="card-block">
+                    <h4 class="card-title"><%= event.name %></h4>
+                    <div class="card-text">
+                      <%= fa_icon 'clock-o' %>
+                      <span class="card-text"><%= event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %></span>
+                    </div>
+                    <table class="table">
+                        <th> ticket type </th>
+                        <th> unit price </th>
+                        <th> booked quanlity </th>
+                      
+                        <% (event.booked_tickets session[:user_id]).each do |t| %>
+                        <tr>
+                          <td> <%= t.ticket_type.name %> </td>
+                          <td> <%= number_to_currency(t.ticket_type.price, unit: 'VND ', precision: 0) %> </td>
+                          <td> <%= t.quanlity %></td>
+                        </tr>
+                        <% end %> 
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+            </div>            
+        <% end %>
+      </div>
+    <% end %>
+</div>

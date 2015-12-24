@@ -48,7 +48,7 @@
               <tr>
                 <td> <%= type.name %> </td>
                 <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-                <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
+                <td> <%= type.max_quantity %></td> 
                 <td>
                   <a class="nav-link" href="/events/<%= @event.id %>/tickettypes/<%= type.id %>/remove">delete</a>
                 </td>

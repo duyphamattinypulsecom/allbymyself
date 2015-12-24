@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
 
     validates :email, :name, presence: true
     validates_confirmation_of :password
+
+    def booked_events
+      Event.where("id in (select event_id from tickets where user_id = ?)", id)
+    end
 end

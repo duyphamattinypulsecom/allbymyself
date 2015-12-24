@@ -24,26 +24,47 @@
           <%= image_tag 'shadow-top.png' %>
         </div>
 
-        <div class="row">
-          <div class="col-md-12">  
-            <table class="table">
-              <th> Ticket Type </th>
-              <th> Unit Price </th>
-              <th> Quantity </th>
-            
-              <% @event.ticket_types.each do |type| %>
-              <tr>
-                <td> <%= type.name %> </td>
-                <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-                <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
-              </tr>
-              <% end %> 
-            </table>
+        <%= form_for @ticket || Ticket.new, url: event_tickets_path(@event), method: 'post' do |f| %>
+          <div class="row">
+            <div class="col-md-12">  
+              <table class="table">
+                <th> Ticket Type </th>
+                <th> Unit Price </th>
+                <% unless @event.booked session[:user_id] %>
+                  <th> Quantity </th>
+                  <th> Available </th>
+                <% end %>
+                <th> booked </th>
+              
+                <% @event.ticket_types.each do |type| %>
+                <tr>
+                  <td> <%= type.name %> </td>
+                  <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
+                  <% unless @event.booked session[:user_id] %>
+                    <td> 
+                      <% 
+                        max_bookable = type.max_quantity - type.no_of_booked 
+                        if max_bookable > 10
+                          max_bookable = 10
+                        end
+                      %>
+                      <%= select_tag("ticket_type_id[#{type.id}]", options_for_select(0..max_bookable)) %>
+                    
+                    </td> 
+                    <td> <%= type.max_quantity - type.no_of_booked %></td> 
+                  <% end %>
+                  <td> <%= type.your_booked_quanlity session[:user_id] %></td>
+                </tr>
+                <% end %> 
+              </table>
+            </div>
+            <% if @event.booked session[:user_id] %>
+              <input type="submit" name="commit" value="booked" class="btn btn-block btn-success disabled not-active">
+            <% else %>
+              <input type="submit" name="commit" value="book now" class="btn btn-block btn-danger">
+            <% end %>
           </div>
-          <%= link_to new_event_ticket_path(@event) do %>
-            <button class='btn btn-lg btn-block btn-danger'> BOOK NOW </button>
-          <% end %>
-        </div>
+        <% end %>
 
         <div class="extended-description">
           <%= @event.extended_html_description.html_safe %>

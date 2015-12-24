@@ -4,7 +4,17 @@
       <img class="card-img-top" src="<%= event.hero_image_url %>">
       <div class="card-block">
         <h4 class="card-title"><%= event.name %></h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="card-text">
+          <%= fa_icon 'clock-o' %>
+          <span class="card-text"><%= event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %></span>
+        </div>
+        <div class="card-text">
+          <%= fa_icon 'map-marker' %>
+          <span class="card-text">
+            <strong>"<%= event.venue.name %>"</strong> <%= event.venue.full_address %>
+          </span>
+        </div>
+
         <% if editable %>
           <%= link_to 'Edit', edit_event_path(event), {class: 'btn btn-success'} %>
           <% if event.public %>

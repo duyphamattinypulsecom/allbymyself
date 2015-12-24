@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'tickettypes/:id/remove' => 'tickettypes#destroy'
   get 'venues/:id/remove' => 'venues#destroy'
   get 'events/:id/publish' => 'events#publish_event', as: 'publish_event'
+  get 'tickets' => 'tickets#index'
 
   resources :users, only: [:new, :create]
 
