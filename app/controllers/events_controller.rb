@@ -55,7 +55,7 @@ class EventsController < ApplicationController
 
   def publish_event
     event = Event.find(params[:id])
-    if @event.creator_id != current_user.id
+    if event.creator_id != current_user.id
       @events = current_user.events
       @error = "You can only publish your event"
       render 'index'
