@@ -8,7 +8,7 @@ Time spent: **18** hours
 
 URL: **https://allbymyself.herokuapp.com**
 
-SimpleCov Test Coverage: **Insert percentage or link to report here**
+SimpleCov Test Coverage: **90.59%**
 
 ## User Stories
 
